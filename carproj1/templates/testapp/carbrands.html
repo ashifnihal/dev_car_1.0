@@ -1,0 +1,24 @@
+{%extends 'testapp/base.html'%}
+{%load staticfiles%}
+{%block body_block%}
+<table border="2">
+  <thead>
+    <th>Brand</th>
+    <th>Country</th>
+    <th>ModelsDetails</th>
+    <th>brand images</th>
+  </thead>
+{%for data in cdata%}
+<tr>
+  <td>{{data.brand}}</td>
+  <td>{{data.country}}</td>
+  <td><a href="/cardetailsbybrand/?brandid={{data.id}}">click_here_to_get_model_details</a></td>
+  {%if data.brand|lower == "vw"%}
+  <td> <img src="{%static "images/vw_logo.png" %}" alt=""> </td>
+  {%elif data.brand|lower == "toyota" %}
+  <td> <img src="{%static "images/toyota_logo.jpg" %}" alt=""> </td>
+  {%endif%}
+  </tr>
+{%endfor%}
+</table>
+{%endblock%}

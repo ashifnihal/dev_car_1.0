@@ -1,0 +1,13 @@
+{%extends 'testapp/base.html'%}
+{%block body_block%}
+<form class="" action="" method="post">
+{%csrf_token%}
+band<input type="text" name="brand" value="{{qdata.brand_id}}"><br>
+model<input type="text" name="model" value="{{qdata.model}}"><br>
+year<input type="text" name="year" value="{{qdata.year}}"><br>
+type<input type="text" name="type" value="{{qdata.type}}"><br>
+fuel<input type="text" name="fuel" value="{{qdata.fuel}}"><br>
+price<input type="text" name="price" value="{{qdata.price}}"><br>
+<input type="submit" name="update" value="update">
+</form>
+{%endblock%}

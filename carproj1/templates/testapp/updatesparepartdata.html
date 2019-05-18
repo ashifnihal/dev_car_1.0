@@ -1,0 +1,15 @@
+{%extends 'testapp/base.html'%}
+{%block body_block%}
+<form class="" action="" method="post"><br>
+{%csrf_token%}
+model_id <input type="text" name="model" value="{{qdata.model_id}}"><br>
+spoiler <input type="text" name="spoiler" value="{{qdata.spoiler}}"><br>
+wheels <input type="text" name="wheels" value="{{qdata.wheels}}"><br>
+brakes <input type="text" name="brakes" value="{{qdata.brakes}}"><br>
+headlamps <input type="text" name="headlamps" value="{{qdata.headlamps}}"><br>
+taillamps <input type="text" name="taillamps" value="{{qdata.taillamps}}"><br>
+airbags <input type="text" name="airbags" value="{{qdata.airbags}}"><br>
+clutchplates <input type="text" name="clutchplates" value="{{qdata.clutchplates}}"><br>
+<input type="submit" name="update" value="update"><br>
+</form>
+{%endblock%}

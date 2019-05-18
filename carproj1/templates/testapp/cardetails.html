@@ -1,0 +1,40 @@
+{%extends 'testapp/base.html'%}
+{%load staticfiles%}
+{%block body_block%}
+<table border="2">
+  <thead>
+    <th>brand</th>
+    <th>model</th>
+    <th>year</th>
+    <th>type</th>
+    <th>fuel</th>
+    <th>price</th>
+    <th>Car Images</th>
+    <th>UpdateData</th>
+    <th>View SpareParts</th>
+  </thead>
+  {%for data in cdata%}
+  <tr>
+
+    <td>{{data.brand}}</td>
+    <td>{{data.model}}</td>
+    <td>{{data.year}}</td>
+    <td>{{data.type}}</td>
+    <td>{{data.fuel}}</td>
+    <td>{{data.price}}</td>
+    {%if data.model|lower == "polo" and data.year == 2019%}
+    <td> <img src="{%static "images/polo_2019.jpg"%}" alt=""></td>
+    {%elif data.model|lower == "vento" and data.year == 2011 %}
+    <td> <img src="{%static "images/vento_2011.jpg"%}" alt=""></td>
+    {%elif data.model|lower == "innova" and data.year == 2018 %}
+    <td> <img src="{%static "images/innova_2018.jpg"%}" alt=""></td>
+    {%elif data.model|lower == "crysta" and data.year == 2016 %}
+    <td> <img src="{%static "images/crysta_2016.jpg"%}" alt=""></td>
+     {%endif%}
+    <td><a href="/updatecardata/?id={{data.id}}">click here to update</a></td>
+    <td><a href="/sparepartsdata/?model_id={{data.id}}">view_spare_parts</a></td>
+
+  </tr>
+  {%endfor%}
+</table>
+{%endblock%}

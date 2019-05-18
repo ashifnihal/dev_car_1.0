@@ -1,0 +1,33 @@
+{%extends 'testapp/base.html'%}
+{%block body_block%}
+<table border="2">
+  <thead>
+    <th>model</th>
+    <th>spoiler</th>
+    <th>brakes</th>
+    <th>headlamps</th>
+    <th>taillamps</th>
+    <th>wheels</th>
+    <th>brakes</th>
+    <th>airbags</th>
+    <th>clutchplates</th>
+    <th>update sparepartsdata</th>
+    <th>Delete sparepartsdata</th>
+  </thead>
+  {%for data in sdata%}
+  <tr>
+    <td>{{data.model_id}}</td>
+    <td>{{data.spoiler}}</td>
+    <td>{{data.brakes}}</td>
+    <td>{{data.headlamps}}</td>
+    <td>{{data.taillamps}}</td>
+    <td>{{data.wheels}}</td>
+    <td>{{data.brakes}}</td>
+    <td>{{data.airbags}}</td>
+    <td>{{data.clutchplates}}</td>
+    <td><a href="/updatesparepartdata/?id={{data.id}}">update_sparepart_data</a></td>
+    <td> <a href="/deletesparepartdata/?id={{data.id}}">Delete_SparePartData</a></td>
+  </tr>
+  {%endfor%}
+</table>
+{%endblock%}

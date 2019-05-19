@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from testapp.views import get_car_brand_details,get_home,get_car_details_by_brand,insert_car_data,update_car_data,view_spare_parts,insert_sparepart_data,update_sparepart_data,delete_sparepartdata
+from testapp.views import get_car_brand_details,get_home,get_car_details_by_brand,insert_car_data,update_car_data,view_spare_parts,insert_sparepart_data,update_sparepart_data,delete_sparepartdata,insert_carbrand_data
 from carapi1 import urls
 
 urlpatterns = [
@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^getCarData/',get_car_brand_details),
     url(r'^home/',get_home),
     url(r'^cardetailsbybrand/',get_car_details_by_brand),
+    url(r'^insertcarbranddata/',insert_carbrand_data),
     url(r'^insertcardata/',insert_car_data),
     url(r'^updatecardata/',update_car_data),
     url(r'^sparepartsdata/',view_spare_parts),

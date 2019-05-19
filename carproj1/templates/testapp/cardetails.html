@@ -1,6 +1,7 @@
 {%extends 'testapp/base.html'%}
 {%load staticfiles%}
 {%block body_block%}
+<div class="container" align="center">
 <table border="2">
   <thead>
     <th>brand</th>
@@ -30,11 +31,46 @@
     <td> <img src="{%static "images/innova_2018.jpg"%}" alt=""></td>
     {%elif data.model|lower == "crysta" and data.year == 2016 %}
     <td> <img src="{%static "images/crysta_2016.jpg"%}" alt=""></td>
-     {%endif%}
-    <td><a href="/updatecardata/?id={{data.id}}">click here to update</a></td>
-    <td><a href="/sparepartsdata/?model_id={{data.id}}">view_spare_parts</a></td>
+    {%elif data.model|lower == "ertiga" and data.year == 2019 %}
+    <td> <img src="{%static "images/ertiga_2019.jpg"%}" alt=""></td>
+    {%elif data.model|lower == "scross" and data.year == 2019 %}
+    <td> <img src="{%static "images/scross_2019.jpg"%}" alt=""></td>
+    {%elif data.model|lower == "swift" and data.year == 2019 %}
+    <td> <img src="{%static "images/swift_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "baleno" and data.year == 2019 %}
+     <td> <img src="{%static "images/baleno_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "a3" and data.year == 2019 %}
+     <td> <img src="{%static "images/a3_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "s3" and data.year == 2019 %}
+     <td> <img src="{%static "images/s3_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "rs 3" and data.year == 2019 %}
+     <td> <img src="{%static "images/rs3_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "a4" and data.year == 2019 %}
+     <td> <img src="{%static "images/a4_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "s4" and data.year == 2019 %}
+     <td> <img src="{%static "images/s4_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "a5" and data.year == 2019 %}
+     <td> <img src="{%static "images/a5_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "s5" and data.year == 2019 %}
+     <td> <img src="{%static "images/s5_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "x1" and data.year == 2019 %}
+     <td> <img src="{%static "images/x1_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "z4" and data.year == 2019 %}
+     <td> <img src="{%static "images/z4_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "3 series" and data.year == 2019 %}
+     <td> <img src="{%static "images/3series_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "x4" and data.year == 2019 %}
+     <td> <img src="{%static "images/x4_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "kodiaq" and data.year == 2019 %}
+     <td> <img src="{%static "images/kodiaq_2019.jpg"%}" alt=""></td>
+     {%elif data.model|lower == "octavia 2020" and data.year == 2019 %}
+     <td> <img src="{%static "images/octiva2020_2019.jpg"%}" alt=""></td>
+      {%endif%}
+    <td><a class="links" href="/updatecardata/?id={{data.id}}">click here to update</a></td>
+    <td><a class="links" href="/sparepartsdata/?model_id={{data.id}}">view_spare_parts</a></td>
 
   </tr>
   {%endfor%}
 </table>
+</div>
 {%endblock%}

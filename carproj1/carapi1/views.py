@@ -71,8 +71,8 @@ def update_brand_data(request,id):
                             return JsonResponse({'msg':'record updated successfully..'})
                         if form.errors:
                             return JsonResponse(form.errors)
-                return JsonResponse({'msg':'please provide id to update the data..gknbhkgsnngsjh.....'})
-        return JsonResponse({'msg':'please provide POST request .....'})
+                return JsonResponse({'msg':'please provide id to update the data..'})
+        return JsonResponse({'msg':'please provide POST request...'})
 def delete_brand_data(request,id):
     try:
         qs=CarBrands.objects.get(id=id)

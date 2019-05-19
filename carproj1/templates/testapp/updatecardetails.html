@@ -1,6 +1,8 @@
 {%extends 'testapp/base.html'%}
 {%block body_block%}
+<div class="container" align="center">
 <form class="" action="" method="post">
+  <h1>Updata CarModel Details</h1>
 {%csrf_token%}
 band<input type="text" name="brand" value="{{qdata.brand_id}}"><br>
 model<input type="text" name="model" value="{{qdata.model}}"><br>
@@ -10,4 +12,5 @@ fuel<input type="text" name="fuel" value="{{qdata.fuel}}"><br>
 price<input type="text" name="price" value="{{qdata.price}}"><br>
 <input type="submit" name="update" value="update">
 </form>
+</div>
 {%endblock%}

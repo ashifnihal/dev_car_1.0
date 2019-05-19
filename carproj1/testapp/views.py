@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from testapp.models import CarBrands,CarModels,SpareParts
-from django.http import HttpResponse
-from testapp.forms import CarDetailForm,SparePartsForm
+from django.http import HttpResponse,JsonResponse
+from testapp.forms import CarDetailForm,SparePartsForm,CarBrandsForm
 from django.contrib.auth.decorators import login_required
 
 def get_home(request):
@@ -19,6 +19,16 @@ def get_car_details_by_brand(request):
         except CarModels.DoesNotExist:
             return HttpResponse('no records found for this id..')
     return HttpResponse('please provide brand to get details...')
+@login_required
+def insert_carbrand_data(request):
+    form=CarBrandsForm()
+    if request.method=='POST':
+        form=CarBrandsForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return JsonResponse({'msg':'record inserted successfully...'})
+    return render(request,'testapp/insertcarbranddata.html',context={'form':form})
+
 @login_required
 def insert_car_data(request):
     form=CarDetailForm()

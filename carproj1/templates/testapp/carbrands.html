@@ -1,6 +1,7 @@
 {%extends 'testapp/base.html'%}
 {%load staticfiles%}
 {%block body_block%}
+<div class="container" align="center">
 <table border="2">
   <thead>
     <th>Brand</th>
@@ -12,13 +13,26 @@
 <tr>
   <td>{{data.brand}}</td>
   <td>{{data.country}}</td>
-  <td><a href="/cardetailsbybrand/?brandid={{data.id}}">click_here_to_get_model_details</a></td>
+  <td><a class="links" href="/cardetailsbybrand/?brandid={{data.id}}">click_here_to_get_model_details</a></td>
   {%if data.brand|lower == "vw"%}
   <td> <img src="{%static "images/vw_logo.png" %}" alt=""> </td>
   {%elif data.brand|lower == "toyota" %}
   <td> <img src="{%static "images/toyota_logo.jpg" %}" alt=""> </td>
+  {%elif data.brand|lower == "marutisuziki" %}
+  <td> <img src="{%static "images/maruti_logo.jpg" %}" alt=""> </td>
+  {%elif data.brand|lower == "audi" %}
+  <td> <img src="{%static "images/audi_logo.png" %}" alt=""> </td>
+  {%elif data.brand|lower == "bmw" %}
+  <td> <img src="{%static "images/bmw_logo.jpg" %}" alt=""> </td>
+  {%elif data.brand|lower == "skoda" %}
+  <td> <img src="{%static "images/skoda_logo.png" %}" alt=""> </td>
+  {%elif data.brand|lower == "hyundai" %}
+  <td> <img src="{%static "images/hyundai_logo.jpg" %}" alt=""> </td>
+  {%elif data.brand|lower == "renault" %}
+  <td> <img src="{%static "images/renault_logo.jpg" %}" alt=""> </td>
   {%endif%}
   </tr>
 {%endfor%}
 </table>
+</div>
 {%endblock%}

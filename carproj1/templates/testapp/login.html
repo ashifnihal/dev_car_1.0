@@ -1,0 +1,7 @@
+{%extends 'testapp/base.html'%}
+{%block body_block%}
+<form class="" action="/{{form.id}}" method="post">
+  {{form.as_p}}
+  <input type="submit" name="login" value="login">
+</form>
+{%endblock%}

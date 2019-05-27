@@ -1,9 +1,59 @@
 from django.shortcuts import render
-from testapp.models import CarBrands,CarModels,SpareParts
+from testapp.models import CarBrands,CarModels,SpareParts,Register
 from django.http import HttpResponse,JsonResponse
-from testapp.forms import CarDetailForm,SparePartsForm,CarBrandsForm
+from testapp.forms import CarDetailForm,SparePartsForm,CarBrandsForm,RegisterForm,LoginForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
+def register1(request):
+     form=RegisterForm()
+     # print('@@form',form)
+     if request.method=='POST':
+         form=RegisterForm(request.POST)
+         if form.is_valid():
+             firstname=form.cleaned_data['first_name']
+             lastname=form.cleaned_data['last_name']
+             email=form.cleaned_data['email']
+             username=form.cleaned_data['username']
+             password=form.cleaned_data['password']
+             print('@firstname',firstname,'@lastname',lastname,'@email',email,'password',password)
+             try:
+                 user=form.save()
+                 user.set_password(user.password)
+                 user.save()
+                 return HttpResponse('user registered successfully...')
+             except form.errors:
+                    print('@@@@error',form.errors)
+
+     return render(request,'testapp/register.html',context={'form':form})
+@csrf_exempt
+def login1(request,backend='django.contrib.auth.backends.ModelBackend'):
+    form=LoginForm()
+    if request.method=='POST':
+        form=LoginForm(request.POST)
+        return form
+        if form.is_valid():
+            username=form.cleaned_data['username']
+            password=form.cleaned_data['password']
+            print('@@username',username,'@@password',password)
+            try:
+                data=Register.objects.get(email=username)
+                rusername=data.email
+                rpassword=data.passord1
+                print('@@rusername',rusername,'@@rpassword',rpassword)
+                if str(username)==str(rusername):
+                    if str(password)==str(rpassword):
+                        return render(request,'testapp/home.html')
+                    else:
+                        print(password,'@@please provide valid password')
+                else:
+                    print(username,'@@username please provide valid username')
+            except Register.DoesNotExist:
+                print('no record found by using that username..')
+    return render(request,'testapp/login.html',context={'form':form})
+
+@csrf_exempt
 def get_home(request):
     return render(request,'testapp/home.html')
 def get_car_brand_details(request):
@@ -19,6 +69,8 @@ def get_car_details_by_brand(request):
         except CarModels.DoesNotExist:
             return HttpResponse('no records found for this id..')
     return HttpResponse('please provide brand to get details...')
+
+@csrf_exempt
 @login_required
 def insert_carbrand_data(request):
     form=CarBrandsForm()

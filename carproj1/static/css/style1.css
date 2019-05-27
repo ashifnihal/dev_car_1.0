@@ -3,6 +3,7 @@ body{
 background-image: url(https://images.unsplash.com/photo-1552335270-a1cdfc205557?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1512&q=80);
 background-repeat: no-repeat;
 background-size: auto;
+height: 100%;
 }
 
 img{

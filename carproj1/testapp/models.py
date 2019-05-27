@@ -1,4 +1,15 @@
 from django.db import models
+class Register(models.Model):
+    firstname=models.CharField(max_length=30)
+    lastname=models.CharField(max_length=30)
+    dob=models.DateField()
+    email=models.EmailField()
+    passord1=models.CharField(max_length=30)
+    passord2=models.CharField(max_length=30)
+
+class LoginModel(models.Model):
+    username=models.CharField(max_length=30)
+    password=models.CharField(max_length=30)
 class CarBrands(models.Model):
     brand=models.CharField(max_length=60)
     country=models.CharField(max_length=60)

@@ -15,6 +15,7 @@
     <th>update sparepartsdata</th>
     <th>Delete sparepartsdata</th>
   </thead>
+  {%if sdata%}
   {%for data in sdata%}
   <tr>
     <td>{{data.model_id}}</td>
@@ -29,7 +30,11 @@
     <td><a href="/updatesparepartdata/?id={{data.id}}">update_sparepart_data</a></td>
     <td> <a href="/deletesparepartdata/?id={{data.id}}">Delete_SparePartData</a></td>
   </tr>
-  {%endfor%}
+    {%endfor%}
+    {%else%}
+    <h2>no data found..</h2>
+    {%endif%}
+
 </table>
 </div>
 {%endblock%}

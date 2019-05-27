@@ -33,7 +33,7 @@ def insert_brand_data(request):
             form=CarBrandForm(data=data)
             if form.is_valid():
                 form.save(commit=True)
-                return JsonResponse({'msg':'record inserted successfully..'})
+                return JsonResponse({'msg':'record inserted successfully...'})
             if form.errors:
                 return JsonResponse(form.errors)
         return JsonResponse({'msg':'please provide post request....'})

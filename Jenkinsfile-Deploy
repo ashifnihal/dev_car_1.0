@@ -1,0 +1,58 @@
+pipeline {
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '10')) // Retain history on the last 10 builds
+    ansiColor('xterm') // Enable colors in terminal
+    timestamps() // Append timestamps to each line
+    timeout(time: 20, unit: 'MINUTES') // Set a timeout on the total execution time of the job
+  }
+  agent any
+  parameters {
+    // Select the application or service you want updated. Even if you only have a single 
+    // application or service now its good to plan for the future.
+    string(name: 'DEPLOY_APP', default: 'force-web', description: 'Deploy this application or service')
+
+    // Select the version you want deployed. This could be a semantic version or a 
+    // git reference like a tag, branch, or SHA.
+    string(name: 'DEPLOY_VER', description: 'Deploy this version of the application or service')
+
+    // Select the environment you want updated. Even if you only have a single 
+    // environment now its good to plan for the future.
+    string(name: 'DEPLOY_ENV', default: 'dev', description: 'Deploy to this environment')
+  }
+  stages {
+    stage('Checkout') { // Checkout the repository containing your deploy automation
+      steps {
+        checkout scm
+       }
+     }
+   }
+   stage('Deploy') {
+     steps {
+       // Ansible example
+       // - Ansible should be preinstalled on the Jenkins servers
+       // - need to store SSH key in Jenkins that can be used for deployments
+       withCredentials([sshUserPrivateKey(credentialsId: "deploy-ssh-key", keyFileVariable: 'deploy.pem')]) {
+         sh """
+         ansible-playbook \
+           --key-file ./deploy.pem \
+           --extra-vars "environment=#{params.DEPLOY_ENV} version=#{params.DEPLOY_VER}" \
+           deploy_#{params.DEPLOY_APP}.yml
+         """
+        }
+      }
+    }
+  }
+  post {
+    success {
+        msg = "Deploy succeeded for #{params.DEPLOY_APP} #{params.DEPLOY_VER} " +
+                "to #{params.DEPLOY_ENV} #{ (${env.BUILD_URL})"
+        slackSend message: msg, channel: env.SLACK_CHANNEL
+    }
+    failure {
+      script {
+        msg = "Deploy failed for #{params.DEPLOY_APP} #{params.DEPLOY_VER} " +
+                "to #{params.DEPLOY_ENV} #{ (${env.BUILD_URL})"
+        slackSend message: msg, channel: env.SLACK_CHANNEL
+    }
+  }
+}
